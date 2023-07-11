@@ -1,11 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
+import { StyleSheet, Text, View, Button } from "react-native";
 
 export default function App() {
+  const [count, setCount] = useState(0);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={styles.textHeader}>{count}</Text>
+      <Text className="font-bold text-2xl">taps</Text>
       <StatusBar style="auto" />
+      <Button
+        title="+"
+        onPress={() => {
+          setCount(count + 1);
+        }}
+      />
+      <Button
+        title="-"
+        onPress={() => {
+          if (count == 0) {
+            return;
+          }
+          setCount(count - 1);
+        }}
+      />
     </View>
   );
 }
@@ -13,8 +32,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  textHeader: {
+    fontSize: "100",
   },
 });
