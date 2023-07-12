@@ -16,7 +16,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "testapp"
+      "bundleIdentifier": "testapp",
+      "jsEngine": "jsc"
     },
     "android": {
       "adaptiveIcon": {

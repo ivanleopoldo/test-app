@@ -15,7 +15,7 @@ workflows:
             script: |
               yarn install
               yarn global add expo-cli
-              npx expo prebuild
+              npx expo prebuild --clean --platform ios --skip-dependency-update react-native,react 
           - name: Set Info.plist values
             script: |
               PLIST=$FCI_BUILD_DIR/$XCODE_SCHEME/Info.plist
