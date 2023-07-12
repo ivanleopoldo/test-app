@@ -8,7 +8,7 @@ workflows:
             XCODE_WORKSPACE: "Niko.xcworkspace"
             XCODE_SCHEME: "Niko"
           xcode: latest
-          node: 16.14.2
+          node: latest
           cocoapods: default
         scripts:
           - name: Install dependencies, Expo CLI and eject app
@@ -27,9 +27,13 @@ workflows:
           - name: Build .app
             script: |
               cd $HOME/clone/ios
-              xcode-project build-ipa \
-                --workspace "$XCODE_WORKSPACE" \
-                --scheme "$XCODE_SCHEME" \
+              xcodebuild build \
+                -workspace "$XCODE_WORKSPACE" \
+                -scheme "$XCODE_SCHEME" \
+                -sdk iphoneos \
+                -configuration Release \
+                CODE_SIGN_IDENTITY="" \
+                CODE_SIGNING_REQUIRED=NO \
+                CODE_SIGNING_ALLOWED=NO 
         artifacts:
           - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
-          - build/ios/ipa/*.ipa
